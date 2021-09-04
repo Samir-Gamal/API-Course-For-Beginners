@@ -27,4 +27,16 @@ class PostController extends Controller
         return $this->apiResponse(null,'The post Not Found',404);
 
     }
+
+    public function store(Request $request){
+
+
+        $post = Post::create($request->all());
+
+        if($post){
+            return $this->apiResponse(new PostResource($post),'The post Save',201);
+        }
+
+        return $this->apiResponse(null,'The post Not Save',400);
+    }
 }
