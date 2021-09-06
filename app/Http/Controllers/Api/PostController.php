@@ -74,4 +74,21 @@ class PostController extends Controller
         }
 
     }
+
+
+    public function destroy($id){
+
+        $post=Post::find($id);
+
+        if(!$post){
+            return $this->apiResponse(null,'The post Not Found',404);
+        }
+
+        $post->delete($id);
+
+        if($post){
+            return $this->apiResponse(null,'The post deleted',200);
+        }
+
+    }
 }
