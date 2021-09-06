@@ -33,11 +33,18 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 });
 
-Route::get('/posts',[PostController::class,'index'])->middleware('auth:api');
-Route::get('/post/{id}',[PostController::class,'show']);
-Route::post('/posts',[PostController::class,'store']);
-Route::post('/post/{id}',[PostController::class,'update']);
-Route::post('/posts/{id}',[PostController::class,'destroy']);
+
+Route::middleware(['jwt.verify'])->group(function () {
+
+    Route::get('/posts',[PostController::class,'index']);
+    Route::get('/post/{id}',[PostController::class,'show']);
+    Route::post('/posts',[PostController::class,'store']);
+    Route::post('/post/{id}',[PostController::class,'update']);
+    Route::post('/posts/{id}',[PostController::class,'destroy']);
+
+});
+
+
 
 
 

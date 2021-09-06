@@ -14,6 +14,11 @@ class PostController extends Controller
 
     public function index(){
 
+
+
+
+
+
         $posts = PostResource::collection(Post::get());
         return $this->apiResponse($posts,'ok',200);
     }
