@@ -33,8 +33,7 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 });
 
-
-Route::get('/posts',[PostController::class,'index']);
+Route::get('/posts',[PostController::class,'index'])->middleware('auth:api');
 Route::get('/post/{id}',[PostController::class,'show']);
 Route::post('/posts',[PostController::class,'store']);
 Route::post('/post/{id}',[PostController::class,'update']);
